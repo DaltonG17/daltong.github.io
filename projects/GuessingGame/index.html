@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>JavaScript Guessing Game</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+</head>
+
+<body>
+	<div id="miss-container"></div>
+
+  <div class="container">
+    <h1>Guess the Number!</h1>
+    <p>I am thinking of a number between 1 and 100. Can you guess what it is?</p>
+
+    <form onsubmit="event.preventDefault(); checkGuess();">
+      <label for="guess">My Guess:</label>
+      <input type="number" id="guess" required />
+    </form>
+
+    <div id="buttonArea">
+      <button type="button" onclick="checkGuess()">Guess</button>
+      <button type="button" onclick="location.reload()">Clear</button>
+    </div>
+
+    <p id="feedback"></p>
+  </div>
+
+  <script>
+    const randomNumber = Math.floor(Math.random() * 100) + 1;
+    console.log("Random Number", randomNumber);
+
+    function checkGuess() {
+  const myGuess = document.getElementById("guess").value;
+  const feedback = document.getElementById("feedback");
+
+  if (myGuess == randomNumber) {
+    feedback.textContent = "You got it right!";
+    confetti();
+    document.getElementById("guess").disabled = true;
+  } else {
+    feedback.textContent = `Your guess was ${myGuess}. That's too ${myGuess > randomNumber ? "high" : "low"}. Try again!`;
+    spawnMissX();
+  }
+
+  // X effect
+  function spawnMissX() {
+  const container = document.getElementById("miss-container");
+  const x = document.createElement("div");
+  x.classList.add("miss-x");
+  x.textContent = "❌";
+
+  const randomX = Math.floor(Math.random() * window.innerWidth);
+  const randomY = Math.floor(Math.random() * 200);
+  x.style.left = `${randomX}px`;
+  x.style.top = `${randomY}px`;
+
+  container.appendChild(x);
+
+  setTimeout(() => {
+    container.removeChild(x);
+  }, 1000);
+}
+
+}
+
+  </script>
+</body>
+</html>

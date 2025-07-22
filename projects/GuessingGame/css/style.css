@@ -1,0 +1,100 @@
+/* Reset & Base */
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #1e3c72, #2a5298); /* Blue gradient */
+  color: #fff;
+}
+
+/* Game Container */
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  text-align: center;
+  gap: 1em;
+  padding: 1rem;
+}
+
+/* Headings & Paragraph */
+h1 {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+}
+
+p {
+  font-size: 1.2rem;
+  max-width: 400px;
+}
+
+/* Input Styling */
+form input[type="number"] {
+  padding: 0.5em;
+  font-size: 1rem;
+  width: 150px;
+  text-align: center;
+  border: none;
+  border-radius: 5px;
+  background: #fff;
+  color: #333;
+}
+
+/* Buttons */
+#buttonArea {
+  display: flex;
+  gap: 1em;
+}
+
+#buttonArea button {
+  padding: 0.5em 1.2em;
+  font-size: 1rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: #ffffff;
+  color: #1e3c72;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+#buttonArea button:hover {
+  background-color: #e0e0e0;
+  transform: scale(1.05);
+}
+
+/* Missed Guesses (❌ Animation) */
+#miss-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  width: 100%;
+  height: 100%;
+  z-index: 999;
+}
+
+.miss-x {
+  position: absolute;
+  font-size: 4rem; /* Made larger */
+  font-weight: bold;
+  color: rgba(255, 0, 0, 0.9); /* Slight transparency for glow */
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7); /* Glowing effect */
+  animation: fall 1.2s ease-out forwards;
+  user-select: none;
+  transform: scale(1.2);
+}
+
+
+@keyframes fall {
+  0% {
+    opacity: 1;
+    transform: translateY(0px) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(100px) scale(1.5) rotate(20deg);
+  }
+}
