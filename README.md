@@ -1,2 +1,0 @@
-# daltong.github.io
-Portfolio 
